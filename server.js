@@ -30,6 +30,10 @@ app.get('/data/', (req, res) => {
     {
       'title': 'joke3',
       'description': 'this is joke number 3'
+    },
+    {
+      'title': 'joke4',
+      'description': 'this is joke number 4'
     }
   ]
   res.json(jokes);
