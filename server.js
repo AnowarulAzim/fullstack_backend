@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
+const bodyParser = require('body-parser');
 const env = require('dotenv').config();
 const app = express();
 
@@ -7,11 +9,22 @@ const port =process.env.PORT || 3000;
 
 // Middleware to parse JSON requests
 app.use(cors());
+// Set the view engine and views directory
+app.set('view engine', 'ejs'); // Replace 'ejs' with your preferred view engine
+app.set('views', path.join(__dirname, 'views')); // Replace 'views' with your actual views directory
+app.use(express.static('public'));
+// Set up body parser middleware to parse form data
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Define a sample route
 app.get('/', (req, res) => {
-  res.send('Hello, World!');
+  res.render('form');
 });
+
+app.post('/saveData',(req,res)=>{
+  const { username, email } = req.body;
+  res.send(`Form submitted with name: ${username} and email: ${email}`);
+})
 
 app.get('/about', (req, res) => {
   res.send('This is the about page.');
