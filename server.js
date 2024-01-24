@@ -4,6 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const env = require('dotenv').config();
 const app = express();
+const loginRoutes = require('./routes/login')
 
 const port =process.env.PORT || 3000;
 
@@ -16,10 +17,10 @@ app.use(express.static('public'));
 // Set up body parser middleware to parse form data
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Define a sample route
-app.get('/', (req, res) => {
-  res.render('form');
-});
+
+//Routes
+app.use('/', loginRoutes);
+
 
 app.post('/saveData',(req,res)=>{
   const { username, email } = req.body;
