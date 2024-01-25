@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const env = require('dotenv').config();
 const app = express();
 const loginRoutes = require('./routes/login')
+const registerRoutes = require('./routes/register')
 
 const port =process.env.PORT || 3000;
 
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //Routes
 app.use('/', loginRoutes);
+app.use('/register', registerRoutes);
 
 
 app.post('/saveData',(req,res)=>{
