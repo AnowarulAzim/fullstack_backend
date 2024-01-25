@@ -46,3 +46,7 @@ input[type=text], select {
   div a{
     text-decoration: none;
   }
+
+  div h3{
+    text-align: center;
+  }
